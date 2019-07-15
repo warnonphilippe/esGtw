@@ -46,7 +46,7 @@
             "otherEntityField": "code"
         }
     ],
-    "changelogDate": "20190715130840",
+    "changelogDate": "20190715132817",
     "entityTableName": "order_item",
     "dto": "no",
     "pagination": "pagination",

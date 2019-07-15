@@ -44,7 +44,7 @@
             "otherEntityField": "name"
         }
     ],
-    "changelogDate": "20190715130836",
+    "changelogDate": "20190715132813",
     "javadoc": "Product sold by the Online store",
     "entityTableName": "product",
     "dto": "no",
