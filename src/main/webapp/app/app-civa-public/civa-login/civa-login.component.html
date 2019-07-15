@@ -1,0 +1,51 @@
+<div class="login-body">
+
+    <form (ngSubmit)="login()">
+
+    <div class="login-panel ui-fluid animated fadeIn">
+        <div class="ui-g">
+            <div class="ui-g-12 logo-container">
+                <img src="/assets/layout/images/civadis/civadis-dark.svg" class="logo">
+                <img src="/assets/layout/images/civadis/icon-login.svg" class="login-icon">
+                <h2 class="animated fadeInDown slow">Authentification</h2>
+            </div>
+            <div class="ui-civadis-gradiant">
+                <div class="animated fadeInRight"></div>
+                <div class="animated fadeInLeft"></div>
+                <div class="animated fadeInRight"></div>
+                <div class="animated fadeInLeft"></div>
+            </div>
+            <div class="ui-g-12">
+                <div class="input-wrapper">
+                    <input [(ngModel)]="username" name="username" type="text" autocomplete="off" placeholder="Identifiant" class="ui-inputtext ui-widget"
+                        autofocus>
+                    <i class="fa fa-user"></i>
+                </div>
+            </div>
+            <div class="ui-g-12">
+                <div class="input-wrapper">
+                    <input [(ngModel)]="password" name="password" type="password" autocomplete="off" placeholder="Mot de passe" class="ui-inputtext ui-widget">
+                    <i class="fa fa-lock"></i>
+                </div>
+            </div>
+            <div class="ui-g-12">
+                <div class="input-wrapper">
+                    <a href="">Mot de passe oublié ?</a>
+                </div>
+            </div>
+            <div class="ui-g-12 button-container">
+                <button type="submit" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only blue-btn">
+                    <span class="ui-button-text ui-c">Connexion</span>
+                </button>
+            </div>
+        </div>
+
+
+    </div>
+
+    <div class="login-panel ui-fluid shadow-paper"></div>
+
+    </form>
+
+</div>
+

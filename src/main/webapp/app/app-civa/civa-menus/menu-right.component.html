@@ -1,0 +1,7 @@
+<div style="background:#384448;color:#ddd;font-size:0.9em; letter-spacing:2px;font-weight:bold;text-align:center;padding:20px;text-transform: uppercase;    ">
+
+  Mes applications
+
+</div>
+
+<civa-tile *ngFor="let app of apps; let i = index" [message]="app.message" [title]="app.titre" [icon]="app.icon" [withBorder]="i === 0"></civa-tile>

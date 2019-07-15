@@ -1,0 +1,200 @@
+.login-panel {
+  max-width: 600px;
+  margin: auto;
+  background: white;
+  margin-top: 125px;
+  font-family: 'Roboto', 'Helvetica Neue', sans-serif;
+  color: #757575;
+}
+
+.login-panel .ui-g-12.logo-container {
+  padding: 50px 50px 25px 50px;
+}
+
+.logo-container .login-icon {
+  float: right;
+  height: 50px;
+}
+
+.login-panel .ui-g-12.button-container {
+  padding: 15px 100px;
+}
+
+.login-body .login-panel .ui-g-12.logo-container .logo {
+  height: 50px;
+}
+
+.login-body .login-panel .ui-g-12.logo-container h2 {
+  color: #7d8286;
+  font-size: 16px;
+  font-weight: 100;
+  margin-top: 12px;
+  margin-bottom: 0;
+  letter-spacing: 0.5px;
+}
+
+.login-body .login-panel a {
+  color: #757575;
+  -moz-transition: color 0.3s;
+  -o-transition: color 0.3s;
+  -webkit-transition: color 0.3s;
+  transition: color 0.3s;
+  font-size: 0.7em;
+  text-decoration: none;
+}
+
+.login-body .login-panel a:hover {
+  color: #3984b8;
+  -moz-transition: color 0.3s;
+  -o-transition: color 0.3s;
+  -webkit-transition: color 0.3s;
+  transition: color 0.3s;
+  font-size: 0.7em;
+  text-decoration: none;
+}
+
+.input-wrapper {
+  position: relative;
+}
+
+button {
+  background-color: #3984b8;
+  border: 1px solid transparent;
+  color: white;
+  border-radius: 2px;
+  font-size: 13px;
+  -moz-transition: background-color 0.3s;
+  -o-transition: background-color 0.3s;
+  -webkit-transition: background-color 0.3;
+  transition: background-color 0.3s;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+button:hover {
+  background-color: #3376a5;
+}
+
+.login-panel input {
+  padding: 0.985em;
+  background: #ffffff;
+  padding: 0.385em;
+  border: 1px solid #bdc3c9;
+  -moz-transition: border-color 0.3s;
+  -o-transition: border-color 0.3s;
+  -webkit-transition: border-color 0.3s;
+  transition: border-color 0.3s;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  font-size: 13px;
+  color: #757575;
+}
+
+.login-panel input::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: rgb(181, 181, 181);
+  opacity: 1; /* Firefox */
+}
+
+.login-panel input:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: rgb(181, 181, 181);
+}
+
+.login-panel input::-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: rgb(181, 181, 181);
+}
+
+.login-panel input:focus {
+  border-color: #3984b8;
+}
+
+.login-panel .ui-g-12 {
+  padding: 15px 100px;
+}
+
+div.login-body {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+}
+.login-body .login-panel .input-wrapper input {
+  padding: 0.985em;
+}
+.login-body .ui-button.ui-button-text-only .ui-button-text {
+  padding: 0.985em 0.6em;
+}
+
+.login-body .login-panel .input-wrapper .fa {
+  position: absolute;
+  top: 14px;
+  right: 12px;
+  font-size: 1.1em;
+}
+.login-body {
+  background: url('/assets/layout/images/civadis/bg-login.jpg');
+  background-size: cover;
+  height: auto;
+}
+
+.login-body .login-panel .ui-g-12.logo-container {
+  border-bottom: none;
+  margin-bottom: 0px;
+}
+
+.login-panel.shadow-paper {
+  height: 22px;
+  width: 100%;
+  max-width: 600px;
+  background: url('/assets/layout/images/civadis/shadow.png') top -4px center/contain no-repeat;
+  -moz-opacity: 0.6;
+  opacity: 0.6;
+  filter: alpha(opacity=60);
+}
+
+.login-panel.shadow-paper {
+  margin-top: 0px;
+  background-color: transparent;
+}
+
+.logo-container h2 {
+  text-transform: uppercase;
+}
+
+.ui-civadis-gradiant {
+  height: 6px;
+  width: 100%;
+  margin-bottom: 18px;
+  background: #eee;
+}
+
+.ui-civadis-gradiant > div {
+  width: 25%;
+  height: 100%;
+  display: block;
+  float: left;
+}
+
+.ui-civadis-gradiant > div:nth-child(1) {
+  background: #308fc2;
+  animation-delay: 0.2s;
+}
+.ui-civadis-gradiant > div:nth-child(2) {
+  background: #52b0d4;
+  animation-delay: 0.4s;
+}
+.ui-civadis-gradiant > div:nth-child(3) {
+  background: #d94745;
+  animation-delay: 0.6s;
+}
+.ui-civadis-gradiant > div:nth-child(4) {
+  background: #a1adb4;
+  animation-delay: 0.8s;
+}

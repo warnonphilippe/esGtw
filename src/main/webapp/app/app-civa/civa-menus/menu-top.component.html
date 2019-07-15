@@ -1,0 +1,63 @@
+
+<civa-notification-elem icon="fas fa-th-large" (click)="app.onMenuRightButtonClick($event)">
+</civa-notification-elem>
+
+<civa-notification-elem icon="fas fa-sign-out-alt" (click)="logout()">
+</civa-notification-elem>
+
+<civa-notification-langue></civa-notification-langue>
+
+<civa-notification-profil nom="Dupont" prenom="Jacques" [civaPopupTarget]="notifProfil">
+
+    <civa-notification-popup #notifProfil>
+        <div class="notif-popup-profil">
+            <h2><i class="fas fa-circle online"></i>Jacques Dupont</h2>
+            <h3>agent provincial</h3>
+        </div>
+        <ul>
+            <li><i class="far fa-address-card"></i>Profil utilisateur</li>
+            <li><i class="fas fa-sliders-h"></i>Paramètres</li>
+            <li><i class="fas fa-question-circle"></i>Aide</li>
+        </ul>
+    </civa-notification-popup>
+
+</civa-notification-profil>
+
+<civa-notification-elem icon="far fa-bell" notifications="7" [civaPopupTarget]="notifBell" [warningEnd]="5">
+
+        <civa-notification-popup #notifBell>
+            <div class="notif-popup-profil">
+                <h2><i class="far fa-bell"></i>&nbsp;&nbsp;Zone de notifications</h2>
+                <h3>7 notifications : </h3>
+            </div>
+            <ul>
+                <li>
+                    <i class="far fa-address-card"></i>
+                    <span class="notif-badge-warning">2</span>
+                    Nouveaux utilisateurs
+                </li>
+                <li>
+                    <i class="fas fa-sliders-h"></i>
+                    <span class="notif-badge-error">4</span>
+                    Paramètres à valider
+                </li>
+                <li>
+                    <i class="fas fa-question-circle"></i>
+                    <span class="notif-badge-success">1</span>
+                    Messages à vérifier
+                </li>
+            </ul>
+            <a href="!#" class="notif-popup-link">Voir plus...</a>
+        </civa-notification-popup>
+
+</civa-notification-elem>
+
+<civa-notification-elem icon="far fa-envelope" notifications="5" >
+</civa-notification-elem>
+
+
+
+
+
+
+
