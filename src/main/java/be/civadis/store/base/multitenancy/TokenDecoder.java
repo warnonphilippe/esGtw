@@ -123,14 +123,17 @@ public class TokenDecoder {
 
     public String getTenant(String token){
 
-        if (token.toLowerCase().startsWith("bearer")){
-            token = token.substring(7);
+        if (token != null && !token.isEmpty()){
+            if (token.toLowerCase().startsWith("bearer")){
+                token = token.substring(7);
+            }
+    
+            Claims claims = getClaims(token);
+            if (claims != null){
+                return getTenant(claims);
+            }
         }
 
-        Claims claims = getClaims(token);
-        if (claims != null){
-            return getTenant(claims);
-        }
         return null;
     }
 
