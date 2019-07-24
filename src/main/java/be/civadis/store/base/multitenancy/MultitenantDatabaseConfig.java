@@ -8,6 +8,7 @@ import liquibase.integration.spring.SpringLiquibase;
 import org.hibernate.MultiTenancyStrategy;
 import org.hibernate.context.spi.CurrentTenantIdentifierResolver;
 import org.hibernate.engine.jdbc.connections.spi.MultiTenantConnectionProvider;
+import org.hibernate.internal.AbstractSessionImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,6 +49,7 @@ public class MultitenantDatabaseConfig {
     private final Environment env;
     private JpaProperties jpaProperties;
     private ApplicationProperties applicationProperties;
+    private AbstractSessionImpl tmp;
 
     public MultitenantDatabaseConfig(Environment env, JpaProperties jpaProperties, ApplicationProperties applicationProperties) {
         this.env = env;
@@ -63,9 +65,9 @@ public class MultitenantDatabaseConfig {
     }
 
     @Conditional(MultiSchemasCondition.class)
-    @Bean
-    public CurrentTenantIdentifierResolver currentTenantIdentifierResolver(){
-        return new MyCurrentTenantIdentifierResolver();
+    @Bean(name = "currentTenantIdentifierResolver")
+    public ContextBasedTenantIdentifierResolver contextBasedTenantIdentifierResolver(){
+        return new ContextBasedTenantIdentifierResolver();
     }
 
     @Bean(name = "multiTenantConnectionProvider")
@@ -94,13 +96,15 @@ public class MultitenantDatabaseConfig {
         return new DataSourceBasedMultiTenantConnectionProviderImpl(applicationProperties.getMultitenancy().getDefaultTenant().getName(), dataSources);
     }
 
+    @Primary
     @Bean
     @DependsOn("multiTenantConnectionProvider")
     public DataSource dataSource() {
         return dataSourceBasedMultiTenantConnectionProvider().getDefaultDataSource();
     }
-
+    
     @Conditional(MultiSchemasCondition.class)
+    @Primary
     @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource, 
                                                                        HibernateProperties hibernateProperties, JpaProperties jpaProperties,
@@ -113,15 +117,15 @@ public class MultitenantDatabaseConfig {
         properties.put(org.hibernate.cfg.Environment.MULTI_TENANT, MultiTenancyStrategy.DATABASE);
         properties.put(org.hibernate.cfg.Environment.MULTI_TENANT_CONNECTION_PROVIDER, multiTenantConnectionProvider);
         properties.put(org.hibernate.cfg.Environment.MULTI_TENANT_IDENTIFIER_RESOLVER, currentTenantIdentifierResolver);
-
+        
         LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(dataSource);
-        em.setPackagesToScan("be.civadis");
+        em.setPackagesToScan("be.civadis", "org.axonframework.modelling.saga.repository.jpa", "org.axonframework.eventsourcing.eventstore.jpa"); 
         em.setJpaVendorAdapter(jpaVendorAdapter());
         em.setJpaPropertyMap(properties);
-
+        
         return em;
+        
     }
 
 }
-
