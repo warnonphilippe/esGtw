@@ -1,9 +1,9 @@
 version: '2'
 services:
-  store-mysql:
+  store-mysql1:
     image: mysql:5.7.20
     volumes:
-      - ~/volumes/jhipster/store/mysql/:/var/lib/mysql/
+      - ~/volumes/jhipster/store/mysql1/:/var/lib/mysql/
     environment:
       - MYSQL_USER=store
       - MYSQL_PASSWORD=store

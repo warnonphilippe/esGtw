@@ -1,14 +1,14 @@
 version: '2'
 services:
-  store-mysql:
+  store-mysql2:
     image: mysql:5.7.20
     volumes:
-      - ~/volumes/jhipster/store/mysql/:/var/lib/mysql/
+      - ~/volumes/jhipster/store/mysql2/:/var/lib/mysql/
     environment:
       - MYSQL_USER=store
       - MYSQL_PASSWORD=store
       - MYSQL_DATABASE=store
       - MYSQL_ROOT_PASSWORD=root
     ports:
-      - 3306:3306
+      - 3316:3306
     command: mysqld --lower_case_table_names=1 --skip-ssl --character_set_server=utf8mb4 --explicit_defaults_for_timestamp

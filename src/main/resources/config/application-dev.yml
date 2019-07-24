@@ -85,6 +85,21 @@ spring:
     locator:
       discovery:
         enabled: true
+  security:
+    oauth2:
+      client:
+        provider:
+          jhipster:
+            issuer-uri: http://localhost:9080/auth/realms/jhipster
+          jhipster2:
+            issuer-uri: http://localhost:9080/auth/realms/jhipster2
+        registration:
+          jhipster:
+            client-id: internal
+            client-secret: internal
+          jhipster2:
+            client-id: internal
+            client-secret: internal
 
 server:
   port: 8080
@@ -138,4 +153,31 @@ jhipster:
 # https://www.jhipster.tech/common-application-properties/
 # ===================================================================
 
-# application:
+application:
+  multitenancy:
+    issuer-base-uri: http://localhost:9080/auth/realms/
+    tenants:
+      - name: jhipster
+        default: true
+        url: jdbc:mysql://localhost:3306/store?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC
+        username: store
+        password: store
+        hikari:
+          auto-commit: false
+          data-source-properties:
+            cachePrepStmts: true
+            prepStmtCacheSize: 250
+            prepStmtCacheSqlLimit: 2048
+            useServerPrepStmts: true
+      - name: jhipster2
+        default: false
+        url: jdbc:mysql://localhost:3316/store?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC
+        username: store
+        password: store
+        hikari:
+          auto-commit: false
+          data-source-properties:
+            cachePrepStmts: true
+            prepStmtCacheSize: 250
+            prepStmtCacheSqlLimit: 2048
+            useServerPrepStmts: true
