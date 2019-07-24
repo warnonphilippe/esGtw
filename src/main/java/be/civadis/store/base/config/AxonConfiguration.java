@@ -39,7 +39,7 @@ public class AxonConfiguration {
 			//@RabbitListener(bindings = @QueueBinding(
             //    value = @org.springframework.amqp.rabbit.annotation.Queue,
             //    exchange = @org.springframework.amqp.rabbit.annotation.Exchange(value ="axonMessageExchange",type = ExchangeTypes.FANOUT)), concurrency ="1")
-			@RabbitListener(queues = "axonMessageExchangeQueue")
+			@RabbitListener(queues = "axonMessageExchangeQueue", concurrency = "1")
 			@Override
 			public void onMessage(Message message, Channel channel) {
 				super.onMessage(message, channel);

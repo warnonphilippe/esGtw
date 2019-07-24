@@ -19,7 +19,7 @@ public class AmqpConfiguration {
 
 	@Bean
 	public Queue axonMessageExchangeQueue() {
-		return QueueBuilder.durable("axonMessageExchangeQueue").build();
+		return QueueBuilder.durable().build();
 	}
 
 	@Bean
