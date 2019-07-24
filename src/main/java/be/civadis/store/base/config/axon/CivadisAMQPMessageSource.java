@@ -1,6 +1,7 @@
 package be.civadis.store.base.config.axon;
 
 import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -51,18 +52,23 @@ public class CivadisAMQPMessageSource extends SpringAMQPMessageSource {
         if (!parentEventProcessors.isEmpty()) {
             parentMessageConverter.readAMQPMessage(message.getBody(), message.getMessageProperties().getHeaders())
                     .ifPresent(event -> parentEventProcessors.forEach(ep -> {
+
                         if (event.getPayload() != null && (event.getPayload() instanceof BaseEvent)) {
                             BaseEvent baseEvent = (BaseEvent) event.getPayload();
 
-                            if (this.applicationProperties != null
-                                    && !StringUtils.isEmpty(this.applicationProperties.getContexteId())) {
-                                if (baseEvent.getContexteId().equals(applicationProperties.getContexteId())) {
-                                    ep.accept(Collections.singletonList(event));
-                                }
-                            } else {
+                            // rechercher liste des tenants
+                            List<String> tenantList = new ArrayList<>();
+                            applicationProperties.getMultitenancy().getTenants().forEach(
+                                tenant -> tenantList.add(tenant.getName().toLowerCase())
+                            );
+
+                            // ne laisser passer l'event que si son tenantId est dans la liste (ou all)
+                            if (tenantList.contains(baseEvent.getTenantId().toLowerCase()) || "all".equalsIgnoreCase(baseEvent.getTenantId())){
                                 ep.accept(Collections.singletonList(event));
-                            }
+                            } 
+                            
                         } else {
+                            // pas un BaseEvent, on laisse passer
                             ep.accept(Collections.singletonList(event));
                         }
                     }));
