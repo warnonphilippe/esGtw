@@ -203,7 +203,6 @@ jhipster:
 # application:
 
 application:
-  contexteId: ''
 
 axon:
   amqp:

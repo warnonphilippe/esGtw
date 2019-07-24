@@ -15,23 +15,8 @@ import java.util.stream.Collectors;
 @ConfigurationProperties(prefix = "application", ignoreUnknownFields = false)
 public class ApplicationProperties {
 
-    private String contexteId;
     private String fileDbUpdate;
     private Multitenancy multitenancy = new Multitenancy();
-
-    /**
-     * @return the contexteId
-     */
-    public String getContexteId() {
-        return contexteId;
-    }
-
-    /**
-     * @param contexteId the contexteId to set
-     */
-    public void setContexteId(String contexteId) {
-        this.contexteId = contexteId;
-    }
 
     public String getFileDbUpdate() {
         return fileDbUpdate;
@@ -51,17 +36,28 @@ public class ApplicationProperties {
 
     public static class Multitenancy {
 
+        private String issuerBaseUri;
         private Tenant defaultTenant;
 
         private List<Tenant> tenants = new ArrayList<Tenant>();
 
         @PostConstruct
         public void init() {
-            List<Tenant> tcs = tenants.stream().filter(tc -> tc.isDefault()).collect(Collectors.toCollection(ArrayList::new));
+            List<Tenant> tcs = tenants.stream().filter(tc -> tc.isDefault())
+                    .collect(Collectors.toCollection(ArrayList::new));
             if (tcs.size() > 1) {
-                throw new IllegalStateException("Only can be configured as default one data source. Review your configuration");
+                throw new IllegalStateException(
+                        "Only can be configured as default one data source. Review your configuration");
             }
             this.defaultTenant = tcs.get(0);
+        }
+
+        public String getIssuerBaseUri() {
+            return issuerBaseUri;
+        }
+
+        public void setIssuerBaseUri(String issuerBaseUri) {
+            this.issuerBaseUri = issuerBaseUri;
         }
 
         public List<Tenant> getTenants() {
