@@ -1,0 +1,10 @@
+entity InvoiceProjectionGtw {
+    code String required
+    date Instant
+    details String
+    paymentDate Instant
+    paymentAmount BigDecimal
+    aggregateId String
+}
+
+paginate InvoiceProjectionGtw with pagination

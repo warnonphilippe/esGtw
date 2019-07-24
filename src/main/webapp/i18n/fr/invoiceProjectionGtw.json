@@ -1,0 +1,27 @@
+{
+  "storeApp": {
+    "invoiceProjectionGtw": {
+      "home": {
+        "title": "InvoiceProjectionGtws",
+        "createLabel": "Créer un nouveau Invoice Projection Gtw",
+        "createOrEditLabel": "Créer ou éditer un Invoice Projection Gtw",
+        "notFound": "Aucun Invoice Projection Gtw trouvé"
+      },
+      "created": "Un nouveau Invoice Projection Gtw a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Invoice Projection Gtw avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Invoice Projection Gtw avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Invoice Projection Gtw {{ id }} ?"
+      },
+      "detail": {
+        "title": "Invoice Projection Gtw"
+      },
+      "code": "Code",
+      "date": "Date",
+      "details": "Details",
+      "paymentDate": "Payment Date",
+      "paymentAmount": "Payment Amount",
+      "aggregateId": "Aggregate Id"
+    }
+  }
+}

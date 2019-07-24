@@ -54,6 +54,7 @@ public class CacheConfiguration {
             createCache(cm, be.civadis.store.base.domain.ProductOrder.class.getName());
             createCache(cm, be.civadis.store.base.domain.ProductOrder.class.getName() + ".orderItems");
             createCache(cm, be.civadis.store.base.domain.OrderItem.class.getName());
+            createCache(cm, be.civadis.store.base.domain.InvoiceProjectionGtw.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }

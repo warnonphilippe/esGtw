@@ -1,0 +1,47 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="invoiceProjectionGtw">
+            <h2><span jhiTranslate="storeApp.invoiceProjectionGtw.detail.title">Invoice Projection Gtw</span> {{invoiceProjectionGtw.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="storeApp.invoiceProjectionGtw.code">Code</span></dt>
+                <dd>
+                    <span>{{invoiceProjectionGtw.code}}</span>
+                </dd>
+                <dt><span jhiTranslate="storeApp.invoiceProjectionGtw.date">Date</span></dt>
+                <dd>
+                    <span>{{invoiceProjectionGtw.date}}</span>
+                </dd>
+                <dt><span jhiTranslate="storeApp.invoiceProjectionGtw.details">Details</span></dt>
+                <dd>
+                    <span>{{invoiceProjectionGtw.details}}</span>
+                </dd>
+                <dt><span jhiTranslate="storeApp.invoiceProjectionGtw.paymentDate">Payment Date</span></dt>
+                <dd>
+                    <span>{{invoiceProjectionGtw.paymentDate}}</span>
+                </dd>
+                <dt><span jhiTranslate="storeApp.invoiceProjectionGtw.paymentAmount">Payment Amount</span></dt>
+                <dd>
+                    <span>{{invoiceProjectionGtw.paymentAmount}}</span>
+                </dd>
+                <dt><span jhiTranslate="storeApp.invoiceProjectionGtw.aggregateId">Aggregate Id</span></dt>
+                <dd>
+                    <span>{{invoiceProjectionGtw.aggregateId}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/invoice-projection-gtw', invoiceProjectionGtw.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

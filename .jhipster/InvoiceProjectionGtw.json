@@ -1,0 +1,42 @@
+{
+    "name": "InvoiceProjectionGtw",
+    "fields": [
+        {
+            "fieldName": "code",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "date",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "details",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "paymentDate",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "paymentAmount",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "aggregateId",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [],
+    "changelogDate": "20190724132819",
+    "entityTableName": "invoice_projection_gtw",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

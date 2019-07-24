@@ -32,14 +32,17 @@ import { JhiLanguageService } from 'ng-jhipster';
       {
         path: 'shipment',
         loadChildren: './invoice/shipment/shipment.module#InvoiceShipmentModule'
+      },
+      {
+        path: 'invoice-projection-gtw',
+        loadChildren: './invoice-projection-gtw/invoice-projection-gtw.module#StoreInvoiceProjectionGtwModule'
       }
       /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
     ])
   ],
   declarations: [],
   entryComponents: [],
-  providers: [
-{ provide: JhiLanguageService, useClass: JhiLanguageService },],
+  providers: [{ provide: JhiLanguageService, useClass: JhiLanguageService }],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class StoreEntityModule {}

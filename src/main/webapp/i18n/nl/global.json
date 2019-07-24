@@ -14,6 +14,7 @@
         "orderItem": "Order Item",
         "invoiceInvoice": "Invoice",
         "invoiceShipment": "Shipment",
+        "invoiceProjectionGtw": "Invoice Projection Gtw",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {
