@@ -1,0 +1,33 @@
+{
+  "storeApp": {
+    "invoiceInvoiceProjection": {
+      "home": {
+        "title": "InvoiceProjections",
+        "createLabel": "Créer un nouveau Invoice Projection",
+        "createOrEditLabel": "Créer ou éditer un Invoice Projection",
+        "notFound": "Aucun Invoice Projection trouvé"
+      },
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Invoice Projection {{ id }} ?"
+      },
+      "detail": {
+        "title": "Invoice Projection"
+      },
+      "code": "Code",
+      "date": "Date",
+      "details": "Details",
+      "status": "Status",
+      "paymentMethod": "Payment Method",
+      "paymentDate": "Payment Date",
+      "paymentAmount": "Payment Amount",
+      "aggregateId": "Aggregate Id"
+    }
+  },
+  "invoiceApp": {
+    "invoiceInvoiceProjection": {
+      "created": "Un nouveau Invoice Projection a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Invoice Projection avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Invoice Projection avec l'identifiant {{ param }} a été supprimé"
+    }
+  }
+}

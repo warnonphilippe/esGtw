@@ -36,6 +36,10 @@ import { JhiLanguageService } from 'ng-jhipster';
       {
         path: 'invoice-projection-gtw',
         loadChildren: './invoice-projection-gtw/invoice-projection-gtw.module#StoreInvoiceProjectionGtwModule'
+      },
+      {
+        path: 'invoice-projection',
+        loadChildren: './invoice/invoice-projection/invoice-projection.module#InvoiceInvoiceProjectionModule'
       }
       /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
     ])

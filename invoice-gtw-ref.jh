@@ -1,0 +1,21 @@
+entity InvoiceProjection {
+    code String required
+    date Instant
+    details String
+    status InvoiceStatus
+    paymentMethod PaymentMethod
+    paymentDate Instant
+    paymentAmount BigDecimal
+    aggregateId String
+}
+
+enum InvoiceStatus {
+    PAID, ISSUED, CANCELLED
+}
+
+enum PaymentMethod {
+    CREDIT_CARD, CASH_ON_DELIVERY, PAYPAL
+}
+
+microservice InvoiceProjection with invoice
+paginate InvoiceProjection with pagination

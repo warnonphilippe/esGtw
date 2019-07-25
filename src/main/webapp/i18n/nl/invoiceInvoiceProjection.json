@@ -1,0 +1,33 @@
+{
+  "storeApp": {
+    "invoiceInvoiceProjection": {
+      "home": {
+        "title": "Invoice Projections",
+        "createLabel": "Maak een nieuwe Invoice Projection",
+        "createOrEditLabel": "Maak of wijzig een Invoice Projection",
+        "notFound": "No Invoice Projection found"
+      },
+      "delete": {
+        "question": "Bent u zeker dat u Invoice Projection {{ id }} wilt verwijderen?"
+      },
+      "detail": {
+        "title": "Invoice Projection"
+      },
+      "code": "Code",
+      "date": "Date",
+      "details": "Details",
+      "status": "Status",
+      "paymentMethod": "Payment Method",
+      "paymentDate": "Payment Date",
+      "paymentAmount": "Payment Amount",
+      "aggregateId": "Aggregate Id"
+    }
+  },
+  "invoiceApp": {
+    "invoiceInvoiceProjection": {
+      "created": "A new Invoice Projection is created with identifier {{ param }}",
+      "updated": "A Invoice Projection is updated with identifier {{ param }}",
+      "deleted": "A Invoice Projection is deleted with identifier {{ param }}"
+    }
+  }
+}

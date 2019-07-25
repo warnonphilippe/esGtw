@@ -1,0 +1,53 @@
+{
+    "name": "InvoiceProjection",
+    "fields": [
+        {
+            "fieldName": "code",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "date",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "details",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "status",
+            "fieldType": "InvoiceStatus",
+            "fieldValues": "PAID,ISSUED,CANCELLED"
+        },
+        {
+            "fieldName": "paymentMethod",
+            "fieldType": "PaymentMethod",
+            "fieldValues": "CREDIT_CARD,CASH_ON_DELIVERY,PAYPAL"
+        },
+        {
+            "fieldName": "paymentDate",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "paymentAmount",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "aggregateId",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [],
+    "changelogDate": "20190725154835",
+    "entityTableName": "invoice_projection",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*",
+    "microserviceName": "invoice"
+}
