@@ -4,6 +4,8 @@ import com.rabbitmq.client.Channel;
 
 import org.axonframework.extensions.amqp.eventhandling.AMQPMessageConverter;
 import org.axonframework.extensions.amqp.eventhandling.spring.SpringAMQPMessageSource;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.core.AmqpAdmin;
 import org.springframework.amqp.core.Binding;
@@ -28,18 +30,19 @@ import be.civadis.store.base.config.axon.CivadisAMQPMessageSource;
  */
 @Configuration
 public class AxonConfiguration {
+
+	private final Logger log = LoggerFactory.getLogger(AxonConfiguration.class);
+
 	@Autowired
 	private ApplicationProperties applicationProperties;
 
 	@Bean
 	public SpringAMQPMessageSource queueMessageSource(AMQPMessageConverter messageConverter,
 			ApplicationProperties applicationProperties) {
+				
 		return new CivadisAMQPMessageSource(messageConverter, applicationProperties){
 			
-			//@RabbitListener(bindings = @QueueBinding(
-            //    value = @org.springframework.amqp.rabbit.annotation.Queue,
-            //    exchange = @org.springframework.amqp.rabbit.annotation.Exchange(value ="axonMessageExchange",type = ExchangeTypes.FANOUT)), concurrency ="1")
-			@RabbitListener(queues = "axonMessageExchangeQueue", concurrency = "1")
+			@RabbitListener(queues = AmqpConfiguration.AXON_QUEUE_PREFIX + "${spring.application.name}", concurrency = "1")
 			@Override
 			public void onMessage(Message message, Channel channel) {
 				super.onMessage(message, channel);

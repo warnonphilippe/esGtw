@@ -1,15 +1,18 @@
 package be.civadis.store.business.common.handler;
 
+import org.axonframework.config.ProcessingGroup;
 import org.axonframework.eventhandling.EventHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import be.civadis.store.base.domain.InvoiceProjectionGtw;import be.civadis.store.business.invoice.event.CreatedInvoiceEvent;
-import be.civadis.store.business.invoice.event.PaidInvoiceEvent;
+import be.civadis.store.base.domain.InvoiceProjectionGtw;
+import be.civadis.commones.invoice.event.CreatedInvoiceEvent;
+import be.civadis.commones.invoice.event.PaidInvoiceEvent;
 import be.civadis.store.business.invoice.repository.InvoiceProjectionGtwExtRepository;
 
 
 @Component
+@ProcessingGroup("amqpEvents")
 public class Cqrs {
 
     @Autowired

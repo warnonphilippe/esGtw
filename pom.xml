@@ -415,6 +415,11 @@
             <version>${jjwt.version}</version>
         </dependency>
         <!-- jhipster-needle-maven-add-dependency -->
+        <dependency>
+            <groupId>be.civadis.commones</groupId>
+            <artifactId>commones</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 
     <build>

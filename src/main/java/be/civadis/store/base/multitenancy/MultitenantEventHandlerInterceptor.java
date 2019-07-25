@@ -39,7 +39,7 @@ public class MultitenantEventHandlerInterceptor
         String ctx = event.getTenantId();
         boolean proceed = false;
         
-        if ("all".equalsIgnoreCase(ctx)){
+        if (BaseEvent.ALL_TENANTS.equalsIgnoreCase(ctx)){
             applicationProperties.getMultitenancy().getTenants().forEach(
                 tenant -> {
                     // émettre un event de même type mais pour un autre tenantId

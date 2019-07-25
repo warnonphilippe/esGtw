@@ -8,6 +8,7 @@ import org.springframework.amqp.core.ExchangeBuilder;
 import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.core.QueueBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -17,19 +18,32 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class AmqpConfiguration {
 
+	public final static String AXON_QUEUE_PREFIX = "axonMessageQueue";
+	public final static String AXON_EXCHANGE_NAME = "axonMessageExchange";
+
+	@Value("${spring.application.name}")
+	private String appName;
+
+	@Autowired
+	private ApplicationProperties applicationProperties;
+
 	@Bean
 	public Queue axonMessageExchangeQueue() {
-		return QueueBuilder.durable().build();
+		return QueueBuilder.durable(AXON_QUEUE_PREFIX + appName)
+			.build();
 	}
 
 	@Bean
 	public Exchange axonMessageExchange() {
-		return ExchangeBuilder.fanoutExchange("axonMessageExchange").build();
+		return ExchangeBuilder.fanoutExchange(AXON_EXCHANGE_NAME).build();
 	}
 
 	@Bean
 	public Binding binding() {
-		return BindingBuilder.bind(axonMessageExchangeQueue()).to(axonMessageExchange()).with("*").noargs();
+		return BindingBuilder
+			.bind(axonMessageExchangeQueue())
+			.to(axonMessageExchange())
+			.with("*").noargs();
 	}
 
 	@Autowired
@@ -38,4 +52,5 @@ public class AmqpConfiguration {
 		amqpAdmin.declareExchange(axonMessageExchange());
 		amqpAdmin.declareBinding(binding());
 	}
+	
 }
