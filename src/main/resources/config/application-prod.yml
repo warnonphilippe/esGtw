@@ -80,6 +80,21 @@ spring:
     locator:
       discovery:
         enabled: true
+  security:
+    oauth2:
+      client:
+        provider:
+          jhipster:
+            issuer-uri: http://keycloak:9080/auth/realms/jhipster
+          jhipster2:
+            issuer-uri: http://keycloak:9080/auth/realms/jhipster2
+        registration:
+          jhipster:
+            client-id: web_app
+            client-secret: web_app
+          jhipster2:
+            client-id: web_app
+            client-secret: web_app
 
 # ===================================================================
 # To enable TLS in production, generate a certificate using:
@@ -144,4 +159,31 @@ jhipster:
 # https://www.jhipster.tech/common-application-properties/
 # ===================================================================
 
-# application:
+application:
+  multitenancy:
+        issuer-base-uri: http://keycloak:9080/auth/realms/
+        tenants:
+            - name: jhipster
+              default: true
+              url: jdbc:mysql://store-mysql:3306/store?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC
+              username: store
+              password: store
+              hikari:
+                  auto-commit: false
+                  data-source-properties:
+                      cachePrepStmts: true
+                      prepStmtCacheSize: 250
+                      prepStmtCacheSqlLimit: 2048
+                      useServerPrepStmts: true
+            - name: jhipster2
+              default: false
+              url: jdbc:mysql://store-mysql:3316/store?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC
+              username: store
+              password: store
+              hikari:
+                  auto-commit: false
+                  data-source-properties:
+                      cachePrepStmts: true
+                      prepStmtCacheSize: 250
+                      prepStmtCacheSqlLimit: 2048
+                      useServerPrepStmts: true
