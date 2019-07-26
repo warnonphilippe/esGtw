@@ -16,10 +16,14 @@ services:
       - SPRING_RABBITMQ_HOST=rabbit
     ports:
       - 8080:8080
-  store-mysql:
+  store-mysql1:
     extends:
-      file: mysql.yml
-      service: store-mysql
+      file: mysql1.yml
+      service: store-mysql1
+  store-mysql2:
+    extends:
+      file: mysql2.yml
+      service: store-mysql2
   jhipster-registry:
     extends:
       file: jhipster-registry.yml
