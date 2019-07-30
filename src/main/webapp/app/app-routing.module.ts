@@ -39,9 +39,12 @@ const LAYOUT_ROUTES = [navbarRoute, ...errorRoute];
           },
           canActivate: [UserRouteAccessService],
           children: [
-            { path: '', loadChildren: () => import('./home/home.module').then(m => m.StoreHomeModule) },
-            { path: '', loadChildren: () => import('./entities/entity.module').then(m => m.StoreEntityModule) },
-            { path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.StoreAdminModule) },
+            // { path: '', loadChildren: () => import('./home/home.module').then(m => m.StoreHomeModule) },
+            // { path: '', loadChildren: () => import('./entities/entity.module').then(m => m.StoreEntityModule) },
+            // { path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.StoreAdminModule) },
+            { path: '', loadChildren: './home/home.module#StoreHomeModule' },
+            { path: '', loadChildren: './entities/entity.module#StoreEntityModule' },
+            { path: 'admin', loadChildren: './admin/admin.module#StoreAdminModule' },
             ...LAYOUT_ROUTES
           ]
         },
