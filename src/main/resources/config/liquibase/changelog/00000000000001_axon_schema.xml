@@ -3,7 +3,7 @@
                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
 
-    <changeSet id="axon-tables" author="lbo">
+    <changeSet id="00000000000100" author="jhipster">
         <createTable tableName="hibernate_sequence">
                 <column name="next_val" autoIncrement="true" type="BIGINT" >
                     <constraints nullable="false"  primaryKey="true"/>
@@ -11,6 +11,126 @@
         </createTable>    
         <sql>INSERT INTO hibernate_sequence (`next_val`) VALUES (0);</sql>
 
+        <createTable tableName="association_value_entry">
+            <column name="id" autoIncrement="true" type="BIGINT" >
+                <constraints nullable="false"  primaryKey="true"/>
+            </column>
+            <column name="association_key" type="VARCHAR(255)"/>
+            <column name="association_value" type="VARCHAR(255)"/>
+            <column name="saga_id" type="VARCHAR(255)"/>
+            <column name="saga_type" type="VARCHAR(255)"/>
+        </createTable>
+
+        <createTable tableName="domain_event_entry">
+            <column name="global_index" autoIncrement="true" type="BIGINT" >
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="aggregate_identifier" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="sequence_number" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="type" type="VARCHAR(255)"/>
+            <column name="event_identifier" type="VARCHAR(255)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="payload_revision" type="VARCHAR(255)">
+            </column>
+            <column name="payload_type" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="time_stamp" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="meta_data" type="BLOB"/>
+            <column name="payload" type="BLOB">
+                <constraints nullable="false"/>
+            </column>
+       </createTable>
+
+        <createIndex tableName="domain_event_entry" indexName="ix_domain_event_entry_1">
+            <column name="time_stamp"/>
+            <column name="sequence_number"/>
+            <column name="aggregate_identifier"/>
+        </createIndex>
+
+        <createIndex tableName="domain_event_entry" unique="true" indexName="ux_domain_event_entry_1">
+            <column name="aggregate_identifier"/>
+            <column name="sequence_number"/>
+        </createIndex>
+
+        <createIndex tableName="domain_event_entry" unique="true" indexName="ux_domain_event_entry_2">
+            <column name="event_identifier"/>
+        </createIndex>
+
+        <createTable tableName="saga_entry">
+            <column name="saga_id" type="VARCHAR(255)">
+                <constraints primaryKey="true" nullable="false" primaryKeyName="pk_saga_entry"/>
+            </column>
+            <column name="revision" type="VARCHAR(255)"/>
+            <column name="saga_type" type="VARCHAR(255)"/>
+            <column name="serialized_saga" type="BLOB"/>
+        </createTable>
+
+        <createTable tableName="snapshot_event_entry">
+            <column name="aggregate_identifier" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="sequence_number" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="type" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="event_identifier" type="VARCHAR(255)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="payload_revision" type="VARCHAR(255)"/>
+            <column name="payload_type" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="time_stamp" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="meta_data" type="BLOB"/>
+            <column name="payload" type="BLOB">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addPrimaryKey tableName="snapshot_event_entry" columnNames="aggregate_identifier, sequence_number, type"
+                       constraintName="pk_snapshot_event_entry"/>
+
+        <createIndex tableName="snapshot_event_entry" unique="true" indexName="ux_snapshot_event_entry_1">
+            <column name="event_identifier"/>
+        </createIndex>
+
+        <createTable tableName="token_entry">
+            <column name="processor_name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="segment" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="token" type="BLOB"/>
+            <column name="token_type" type="VARCHAR(255)"/>
+            <column name="owner" type="VARCHAR(255)"/>
+            <column name="timestamp" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addPrimaryKey tableName="token_entry" columnNames="processor_name, segment" constraintName="pk_token_entry"/>
+    </changeSet>
+    <changeSet id="00000000000101" author="jhipster" context="test">
+        <sql>CREATE SEQUENCE IF NOT EXISTS hibernate_sequence START WITH 0</sql>
+    </changeSet>       
+    <changeSet id="00000000000102" author="jhipster" context="test">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="association_value_entry" schemaName="public"/>
+            </not>
+        </preConditions>
+        <sql>CREATE SEQUENCE IF NOT EXISTS hibernate_sequence</sql>
         <createTable tableName="association_value_entry">
             <column name="id" autoIncrement="true" type="BIGINT" >
                 <constraints nullable="false"  primaryKey="true"/>
@@ -121,5 +241,7 @@
         </createTable>
         <addPrimaryKey tableName="token_entry" columnNames="processor_name, segment" constraintName="pk_token_entry"/>
     </changeSet>
-
 </databaseChangeLog>
+ 
+
+
