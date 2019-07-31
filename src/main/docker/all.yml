@@ -15,6 +15,8 @@ services:
       - JHIPSTER_SLEEP=30 # gives time for other services to boot before the application
       - SPRING_DATA_JEST_URI=http://invoice-elasticsearch:9200
       - SPRING_ELASTICSEARCH_REST_URIS=http://invoice-elasticsearch:9200
+    ports:
+      - 8081:8081
   invoice-mysql1:
     extends:
       file: ../../../../invoice/src/main/docker/mysql1.yml
@@ -36,7 +38,7 @@ services:
       - MANAGEMENT_METRICS_EXPORT_PROMETHEUS_ENABLED=true
       - EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://admin:$${jhipster.registry.password}@jhipster-registry:8761/eureka
       - SPRING_CLOUD_CONFIG_URI=http://admin:$${jhipster.registry.password}@jhipster-registry:8761/config
-      - SPRING_DATASOURCE_URL=jdbc:mysql://store-mysql:3306/store?useUnicode=true&characterEncoding=utf8&useSSL=false
+      - SPRING_DATASOURCE_URL=jdbc:mysql://store-mysql1:3306/store?useUnicode=true&characterEncoding=utf8&useSSL=false
       - SPRING_SECURITY_OAUTH2_CLIENT_PROVIDER_OIDC_ISSUER_URI=http://keycloak:9080/auth/realms/jhipster
       - SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_OIDC_CLIENT_ID=web_app
       - SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_OIDC_CLIENT_SECRET=web_app
