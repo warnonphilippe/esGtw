@@ -161,29 +161,29 @@ jhipster:
 
 application:
   multitenancy:
-        issuer-base-uri: http://keycloak:9080/auth/realms/
-        tenants:
-            - name: jhipster
-              default: true
-              url: jdbc:mysql://store-mysql:3306/store?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC
-              username: store
-              password: store
-              hikari:
-                  auto-commit: false
-                  data-source-properties:
-                      cachePrepStmts: true
-                      prepStmtCacheSize: 250
-                      prepStmtCacheSqlLimit: 2048
-                      useServerPrepStmts: true
-            - name: jhipster2
-              default: false
-              url: jdbc:mysql://store-mysql:3316/store?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC
-              username: store
-              password: store
-              hikari:
-                  auto-commit: false
-                  data-source-properties:
-                      cachePrepStmts: true
-                      prepStmtCacheSize: 250
-                      prepStmtCacheSqlLimit: 2048
-                      useServerPrepStmts: true
+    issuer-base-uri: http://keycloak:9080/auth/realms/
+    tenants:
+      - name: jhipster
+        default: true
+        url: jdbc:mysql://store-mysql:3306/store?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC
+        username: store
+        password: store
+        hikari:
+          auto-commit: false
+          data-source-properties:
+            cachePrepStmts: true
+            prepStmtCacheSize: 250
+            prepStmtCacheSqlLimit: 2048
+            useServerPrepStmts: true
+      - name: jhipster2
+        default: false
+        url: jdbc:mysql://store-mysql:3306/store?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC
+        username: store
+        password: store
+        hikari:
+          auto-commit: false
+          data-source-properties:
+            cachePrepStmts: true
+            prepStmtCacheSize: 250
+            prepStmtCacheSqlLimit: 2048
+            useServerPrepStmts: true
