@@ -61,7 +61,6 @@ import be.civadis.store.base.config.ApplicationProperties;
     @Conditional(MultiSchemasCondition.class)
      @Autowired
      public void configure(EventProcessingConfigurer config, EventGateway eventGateway, ApplicationProperties applicationProperties) {	
-         EventProcessingConfiguration conf;
          config.usingSubscribingEventProcessors();
          config.registerDefaultHandlerInterceptor(
             (configuration, name) -> new MultitenantEventHandlerInterceptor(eventGateway, applicationProperties));
@@ -74,7 +73,6 @@ import be.civadis.store.base.config.ApplicationProperties;
     // Donc le TenantContext garni par MultitenantQueryHandlerInterceptor n'est pas utilisé car connexion déjà initialisée !
     // On remplace le SimpleQueryBus par un MultitenantQueryBus qui ajoute MultitenantQueryHandlerInterceptor en 1er
     // On doit aussi définir un QueryGateway
-    
     @Conditional(MultiSchemasCondition.class)
     @Primary
     @Bean
