@@ -1,0 +1,43 @@
+version: '2'
+services:
+  invoice-mysql1:
+    extends:
+      file: ../../../../invoice/src/main/docker/mysql1.yml
+      service: invoice-mysql1
+  invoice-mysql2:
+    extends:
+      file: ../../../../invoice/src/main/docker/mysql2.yml
+      service: invoice-mysql2
+  invoice-elasticsearch:
+    extends:
+      file: ../../../../invoice/src/main/docker/elasticsearch.yml
+      service: invoice-elasticsearch
+
+  store-mysql1:
+    extends:
+      file: mysql1.yml
+      service: store-mysql1
+  store-mysql2:
+    extends:
+      file: mysql2.yml
+      service: store-mysql2
+  #store-elasticsearch:
+  #  extends:
+  #    file: elasticsearch.yml
+  #    service: store-elasticsearch
+
+  keycloak:
+    extends:
+      file: keycloak.yml
+      service: keycloak
+  jhipster-registry:
+    extends:
+      file: jhipster-registry.yml
+      service: jhipster-registry
+    environment:
+      - SPRING_CLOUD_CONFIG_SERVER_COMPOSITE_0_TYPE=native
+      - SPRING_CLOUD_CONFIG_SERVER_COMPOSITE_0_SEARCH_LOCATIONS=file:./central-config/docker-config/
+  rabbit:
+    extends:
+      file: rabbit.yml
+      service: rabbit
