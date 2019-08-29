@@ -96,19 +96,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .antMatchers("/management/info").permitAll()
             .antMatchers("/management/prometheus").permitAll()
             .antMatchers("/management/**").hasAuthority(AuthoritiesConstants.ADMIN)
-        //on doit recevoir le token de l'extérieur (Code flow pkce ou password flow), sans devoir recherche un token selon le code, donc désactiver le login
-        //sauf pour certaines api accédée à partir de l'UI générée par jhipster
         .and()
-            .antMatcher("/api/**").oauth2Login() //api rest du gateway 
-        .and()
-            .antMatcher("/*/api/**").oauth2Login() //api rest des services, zuul dévie les appels vers ces services selon le mapping
-        .and()
-            .antMatcher("/management/**").oauth2Login() //api pour management, généré par jhipster
-        
-        //si on place des ressources ailleurs, par exemple /pkce/api, le login ne sera pas activé, 
-        // mais le ressourceserver le sera, 
-        // si un token est reçu, il sera traité
-        // si pas de token reçu, l'accès sera refusé
+            .oauth2Login()
         .and()
             .addFilterAfter(new GatewayTenantFilter(), CorsFilter.class)
             .oauth2ResourceServer()
