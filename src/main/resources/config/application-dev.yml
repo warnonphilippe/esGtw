@@ -166,7 +166,7 @@ jhipster:
 # ===================================================================
 
 application:
-  client-base-uri: localhost:4200
+  client-base-uri: http://localhost:4200
   multitenancy:
     issuer-base-uri: http://localhost:9080/auth/realms/
     tenants:
