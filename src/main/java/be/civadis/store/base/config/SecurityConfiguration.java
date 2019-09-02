@@ -35,6 +35,9 @@ import org.springframework.security.core.authority.mapping.GrantedAuthoritiesMap
 import org.springframework.security.oauth2.core.oidc.user.OidcUserAuthority;
 import java.util.*;
 import java.util.stream.Collectors;
+
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import org.springframework.security.web.csrf.CsrfFilter;
 import org.springframework.security.web.header.writers.ReferrerPolicyHeaderWriter;
@@ -47,12 +50,12 @@ import org.zalando.problem.spring.web.advice.security.SecurityProblemSupport;
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     private final CorsFilter corsFilter;
-
-    
+    private final ApplicationProperties applicationProperties;
     
     private final SecurityProblemSupport problemSupport;
 
-    public SecurityConfiguration(CorsFilter corsFilter, SecurityProblemSupport problemSupport) {
+    public SecurityConfiguration(ApplicationProperties applicationProperties, CorsFilter corsFilter, SecurityProblemSupport problemSupport) {
+        this.applicationProperties = applicationProperties;
         this.corsFilter = corsFilter;
         this.problemSupport = problemSupport;
     }
@@ -97,13 +100,20 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .antMatchers("/management/prometheus").permitAll()
             .antMatchers("/management/**").hasAuthority(AuthoritiesConstants.ADMIN)
         .and()
-            .oauth2Login()
+            .oauth2Login().successHandler(myAuthenticationSuccessHandler(applicationProperties))
         .and()
             .addFilterAfter(new GatewayTenantFilter(), CorsFilter.class)
             .oauth2ResourceServer()
                 .jwt()
                 .jwtAuthenticationConverter(mapGroupOrRolesClaimToGrantedAuthorities());
         // @formatter:on
+    }
+
+    @Bean
+    public AuthenticationSuccessHandler myAuthenticationSuccessHandler(ApplicationProperties applicationProperties){
+        //SimpleUrlAuthenticationSuccessHandler handler = new SimpleUrlAuthenticationSuccessHandler();
+        //handler.setTargetUrlParameter("spring-security-redirect");
+        return new MySimpleUrlAuthenticationSuccessHandler(applicationProperties);
     }
 
     /**

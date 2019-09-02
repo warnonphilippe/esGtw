@@ -15,11 +15,20 @@ import java.util.stream.Collectors;
 @ConfigurationProperties(prefix = "application", ignoreUnknownFields = false)
 public class ApplicationProperties {
 
+    private String clientBaseUri;
     private String fileDbUpdate;
     private Multitenancy multitenancy = new Multitenancy();
 
     public String getFileDbUpdate() {
         return fileDbUpdate;
+    }
+
+    public String getClientBaseUri() {
+        return clientBaseUri;
+    }
+
+    public void setClientBaseUri(String clientBaseUri) {
+        this.clientBaseUri = clientBaseUri;
     }
 
     public void setFileDbUpdate(String fileDbUpdate) {
