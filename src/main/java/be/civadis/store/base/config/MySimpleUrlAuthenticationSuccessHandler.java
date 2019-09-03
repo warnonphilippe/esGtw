@@ -41,7 +41,7 @@ public class MySimpleUrlAuthenticationSuccessHandler implements AuthenticationSu
       throws IOException {
   
         String targetUrl = determineTargetUrl(request, response);
- 
+        // TODO : compléter si besoin headers, cookies, etc...
         if (response.isCommitted()) {
             log.debug(
               "Response has already been committed. Unable to redirect to "
