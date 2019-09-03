@@ -1,9 +1,8 @@
-package be.civadis.store.business.invoice.web.rest.pkce;
+package be.civadis.store.business.invoice.web.rest;
 
 import be.civadis.commones.invoice.event.PaidInvoiceEvent;
 
 import org.axonframework.eventhandling.gateway.EventGateway;
-import org.axonframework.messaging.responsetypes.ResponseTypes;
 import org.axonframework.queryhandling.QueryGateway;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,7 +17,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import be.civadis.commones.invoice.query.*;
 import be.civadis.store.base.domain.InvoiceProjectionGtw;
 import be.civadis.store.business.invoice.dto.InvoiceDto;
 import be.civadis.store.business.invoice.dto.PayInvoiceDto;
@@ -29,7 +27,7 @@ import be.civadis.store.business.invoice.service.InvoiceService;
  * REST controller for managing {@link be.civadis.invoice.base.domain.Invoice}.
  */
 @RestController
-@RequestMapping("/pkce/api")
+@RequestMapping("/api")
 public class InvoiceResource {
 
     private final Logger log = LoggerFactory.getLogger(InvoiceResource.class);
@@ -74,7 +72,7 @@ public class InvoiceResource {
         
     }
 
-     /**
+    /**
      * Hello
      * @return
      */
