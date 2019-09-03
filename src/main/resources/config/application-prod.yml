@@ -177,7 +177,7 @@ application:
             useServerPrepStmts: true
       - name: jhipster2
         default: false
-        url: jdbc:mysql://store-mysql:3306/store?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC
+        url: jdbc:mysql://store-mysql2:3306/store?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC
         username: store
         password: store
         hikari:
