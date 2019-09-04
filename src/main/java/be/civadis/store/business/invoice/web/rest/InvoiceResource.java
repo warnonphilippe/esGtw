@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.math.BigDecimal;
 import java.net.URISyntaxException;
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -73,6 +74,23 @@ public class InvoiceResource {
         
     }
 
+     /**
+     * Hello
+     * @return
+     */
+    @GetMapping("/invoices/hello")
+    public ResponseEntity<List<InvoiceProjectionGtw>> hello() {
+        List<InvoiceProjectionGtw> list = new ArrayList<>();
+        list.add(new InvoiceProjectionGtw()
+            .aggregateId("1")
+            .code("Invoice Test 1")
+            .details("Dummy Invoice for test"));
+        list.add(new InvoiceProjectionGtw()
+            .aggregateId("2")
+            .code("Invoice Test 2")
+            .details("Dummy Invoice for test"));
+        return ResponseEntity.ok().body(list);
+    }
 
     /**
      * Simule l'envoi un event à tous les tenants
