@@ -28,7 +28,7 @@ import be.civadis.store.business.invoice.service.InvoiceService;
  * REST controller for managing {@link be.civadis.invoice.base.domain.Invoice}.
  */
 @RestController
-@RequestMapping("/pkce/api")
+@RequestMapping("/api")
 public class InvoiceResource {
 
     private final Logger log = LoggerFactory.getLogger(InvoiceResource.class);
