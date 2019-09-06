@@ -1,4 +1,4 @@
-package be.civadis.store.business.invoice.web.rest;
+package be.civadis.store.business.invoice.web.rest.pkce;
 
 import be.civadis.commones.invoice.event.PaidInvoiceEvent;
 
