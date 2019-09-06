@@ -20,6 +20,7 @@ import java.util.UUID;
 
 import be.civadis.commones.invoice.query.*;
 import be.civadis.store.base.domain.InvoiceProjectionGtw;
+import be.civadis.store.base.multitenancy.TenantContext;
 import be.civadis.store.business.invoice.dto.InvoiceDto;
 import be.civadis.store.business.invoice.dto.PayInvoiceDto;
 import be.civadis.store.business.invoice.repository.InvoiceProjectionGtwExtRepository;
@@ -84,11 +85,11 @@ public class InvoiceResource {
         list.add(new InvoiceProjectionGtw()
             .aggregateId("1")
             .code("Invoice Test 1")
-            .details("Dummy Invoice for test"));
+            .details("Dummy Invoice for test : " + TenantContext.getCurrentTenant()));
         list.add(new InvoiceProjectionGtw()
             .aggregateId("2")
             .code("Invoice Test 2")
-            .details("Dummy Invoice for test"));
+            .details("Dummy Invoice for test : " + TenantContext.getCurrentTenant()));
         return ResponseEntity.ok().body(list);
     }
 
